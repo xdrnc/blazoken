@@ -1,0 +1,34 @@
+# Build outputs
+bin/
+obj/
+
+# IDE files
+.vs/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# NuGet packages
+packages/
+*.nupkg
+
+# User-specific files
+*.user
+*.suo
+
+# Test results
+TestResults/
+
+# Logs
+*.log
+
+# Local development certificates
+*.pfx
+*.p12
+
+# Internal tracking files
+alexNote/

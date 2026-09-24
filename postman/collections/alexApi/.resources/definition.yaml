@@ -1,0 +1,6 @@
+$kind: collection
+name: alexApi
+variables:
+  - key: json_web_token_05el
+    secret: true
+    disabled: false

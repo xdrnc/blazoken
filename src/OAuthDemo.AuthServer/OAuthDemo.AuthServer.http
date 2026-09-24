@@ -1,0 +1,82 @@
+@OAuthDemo.AuthServer_HostAddress = https://localhost:7001
+@ResourceApi_HostAddress = http://localhost:5002
+
+### Get access token for client-a (api.read)
+POST {{OAuthDemo.AuthServer_HostAddress}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=client-a&client_secret=secret-a&scope=api.read&resource=https://resource-api/
+
+###
+
+### Get access token for client-a (api.read api.write)
+POST {{OAuthDemo.AuthServer_HostAddress}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=client-a&client_secret=secret-a&scope=api.read%20api.write&resource=https://resource-api/
+
+###
+
+### Get access token for client-b (api.read)
+POST {{OAuthDemo.AuthServer_HostAddress}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=client-b&client_secret=secret-b&scope=api.read&resource=https://resource-api/
+
+###
+
+### Get access token for client-c (api.read api.write api.admin)
+POST {{OAuthDemo.AuthServer_HostAddress}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=client-c&client_secret=secret-c&scope=api.read%20api.write%20api.admin&resource=https://resource-api/
+
+###
+
+### Test GET /api/my-data with client-a token (expect 200)
+GET {{ResourceApi_HostAddress}}/api/my-data
+Authorization: Bearer {{client-a_token}}
+
+###
+
+### Test POST /api/my-data with client-a token (expect 200)
+POST {{ResourceApi_HostAddress}}/api/my-data
+Authorization: Bearer {{client-a_write_token}}
+Content-Type: application/json
+
+{
+  "key": "test",
+  "value": "test"
+}
+
+###
+
+### Test GET /api/my-data with client-b token (expect 200)
+GET {{ResourceApi_HostAddress}}/api/my-data
+Authorization: Bearer {{client-b_token}}
+
+###
+
+### Test POST /api/my-data with client-b token (expect 403)
+POST {{ResourceApi_HostAddress}}/api/my-data
+Authorization: Bearer {{client-b_token}}
+Content-Type: application/json
+
+{
+  "key": "test",
+  "value": "test"
+}
+
+###
+
+### Test GET /api/admin/summary with client-c token (expect 200)
+GET {{ResourceApi_HostAddress}}/api/admin/summary
+Authorization: Bearer {{client-c_token}}
+
+###
+
+### Test GET /api/admin/summary with client-a token (expect 403)
+GET {{ResourceApi_HostAddress}}/api/admin/summary
+Authorization: Bearer {{client-a_token}}
+
+###

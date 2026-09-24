@@ -1,0 +1,14 @@
+$kind: http-request
+name: s2 http://localhost:5002/api/my-data
+description: ""
+url: http://localhost:5002/api/my-data
+method: GET
+body:
+  type: urlencoded
+  content:
+    "": ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_05el}}pai6T2VfIDEFQAjC0VugJiYKeM_wOxGXPdjvhNnsxvgcMrv7T8Agc6H9GUYHxEs6BesXwZl8M7A0axlwz1GSvEuNgGsCitLaAt8jTRoxEWzkF25Pgk0aIA2EhnYB80kQAXNox6EAIHPaK8CkSmn7SqgjOy5gI9teI7mV_m60Y7Dorod8MJKG7c_4BrrjDzaa6W0-1P_oRwifHsSK8v1NYxVTyY8Go9xIvwoLHS-9vOFzJQFyvZelwTpxAAbRJMKQpAxrdDqiqehu2iLGQvbFQHi4"
+order: 2290517014779192

@@ -1,0 +1,14 @@
+$kind: http-request
+name: s1 authServerIssueToken https://localhost:7001/connect/token
+description: ""
+url: https://localhost:7001/connect/token
+method: POST
+body:
+  type: urlencoded
+  content:
+    grant_type: client_credentials
+    client_id: client-b
+    client_secret: secret-b
+    scope: api.read
+    resource: https://resource-api/
+order: 1790185229546
