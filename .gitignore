@@ -32,3 +32,4 @@ TestResults/
 
 # Internal tracking files
 alexNote/
+.postman/
